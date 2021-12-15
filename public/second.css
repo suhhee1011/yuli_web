@@ -34,11 +34,14 @@ body {
 }
 
 .container {
-    max-width: 200px;
+    max-width: 560px;
     width: 100%;
     background: #ffffff;
     padding: 25px 30px;
     border-radius: 5px;
+}
+.btn-close >span {
+    display:none;
 }
 
 .error-page {

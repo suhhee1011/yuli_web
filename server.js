@@ -13,7 +13,7 @@
 const express = require('express');
 const app = express();
 app.use(express.static(__dirname + "/public"));
-
+app.use(express.static(__dirname + "/resource"));
 const multer = require('multer')
 const path = require("path");
 
@@ -114,21 +114,24 @@ const plans = sequelize_obj.define(
 
 app.get('/', (req, res) => {
     let data = {};
-    res.render("home", { data: data, layout: false });
+    res.render("home", { data: data});
 });
 
 app.get('/home', (req, res) => {
     let data = {};
-    res.render("home", { data: data, layout: false });
+    res.render("home", { data: data });
 });
 
 app.get('/createPlan', (req, res) => {
     let data = {};
-    res.render("home", { data: data, layout: false });
+    res.render("home", { data: data });
 });
-
+app.get('/login', (req, res) => {
+    let data = {};
+    res.render("login", { data: data });
+});
 const special_pattern = /[~!@#$%^&*()_+|<>?:{}]/gi;
-app.get('/login', urlencodedParser, [
+app.post('/login', urlencodedParser, [
 
     check('name', 'Name is required.')
         .exists()
@@ -163,7 +166,7 @@ app.get('/login', urlencodedParser, [
         var alert = errors.array();
         res.render('login', { alert: alert, data: data, layout: false });
     } else {
-        account.findAll({
+        userAccount.findAll({
             attributes: ["name", "email"],
             where: {
                 name: _name,
@@ -175,7 +178,7 @@ app.get('/login', urlencodedParser, [
             if (data.isEmpty) {
                 data.errors.error = " Sorry, you entered the wrong email and/or password";
             }
-            res.render("dashboard", { data: data, layout: false });
+            res.render("dashboard", { data: data});
         });
     }
 });
@@ -187,7 +190,8 @@ app.get('/registration', (req,res) => {
     res.render("registration", { data: data, layout: false });
 });
 
-app.post('/registration', [
+app.post('/registration', (req, res) =>{
+
     check('name', 'Name is required.')
         .exists()
         .withMessage("username is required."),
@@ -221,7 +225,6 @@ app.post('/registration', [
     check('zip', "zip code is required.")
         .exists()
 
-], (req, res) => {
     let name = req.body.name;
     let password = req.body.password;
     let email = req.body.email;
@@ -258,7 +261,7 @@ app.post('/registration', [
         const alert = errors.array();
         res.render('registration', { alert: alert, data: data, layout: false });
     } else {
-        account.create({
+        (req, res) =>userAccount.create({
             name: name,
             password: password,
             email: email,
@@ -278,7 +281,7 @@ app.post('/registration', [
 app.get("/dashboard", (req, res) => {
     let _customerID = req.data.values.customerID;
 
-    account.findAll({
+    userAccount.findAll({
         attributes: ["name", "email", "position"],
         where: {
             customerID: _customerID
