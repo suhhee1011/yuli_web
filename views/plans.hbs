@@ -1,0 +1,54 @@
+
+<link href="second.css" rel="stylesheet">
+
+<section>
+    <!-- Hero-section -->
+    <div class="hero-section">
+        <div class="card bg-dark text-white">
+            <img src="/img/background-image.jpg" class="card-img" alt="hero-img">
+            <div class="card-img-overlay">
+                <h1 class="card-title">The Best Web Hosting</h1>
+                <p class="card-text">
+                    Domain Name for 1st Year <br>
+                    FREE SSL Certificate Included <br>
+                    1-Click WordPress Install <br>
+                    24/7 Support
+                </p>
+                <h3 class="card-text">
+                    Starting at $8.99 <br>
+                    $2.95/month*
+                </h3>
+                <button type="button" style="width: 200px" class="btn btn-outline-primary">Get Started Now</button>
+            </div>
+        </div>
+    </div>
+
+
+    {{#each objs}}
+    <!-- Content-section -->
+    <div class="plans-section">
+        <div class="row row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-icon">
+                        <img src="/uploads/{{this.filename}}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.planName}}</h5>
+                        <p class="card-text">{{this.planDesc}}</p>
+                        <p class="card-cost"><strong>C${{this.planPrice}}</strong> /month</p>
+                        <button type="button" class="btn btn-outline-primary">Add to Cart</button>
+                    </div>
+                    <div class="card-list">
+                        <ul>
+                            {{#each Json.stringfy(this.features, null)}}
+                            <li>{{feature}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</section>

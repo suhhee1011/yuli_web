@@ -1,0 +1,103 @@
+
+<link href="second.css" rel="stylesheet">
+
+<div class="container">
+    <div class="logo">
+        <a href="#">
+            <img src="./img/logo.png" alt="logo" width="140" height="140" class="d-inline-block align-text-center">
+        </a>
+        <h1 class="title">Alba Space</h1>
+        <p>Create a Account</p>
+    </div>
+
+    {{#if alert}}
+    {{#each alert}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{this.msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/each}}
+    {{/if}}
+    <form method="post" class="row g-3" action="/registration" enctype="multipart/form-data">
+
+        <div class="division">
+            <p>Personal Information
+                <hr>
+            </p>
+        </div>
+
+        <!-- name -->
+        <div class="col-md-6">
+            <input type="text" id="name" class="form-control" placeholder="Name *" value="{{data.values.name}}">
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="password" class="form-control" placeholder="Password *" value="{{data.values.password}}">
+        </div>
+
+        <!-- email -->
+        <div class="col-md-6">
+            <input type="email" id="email" class="form-control" placeholder="Email Address *" value="{{data.values.email}}">
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="phonenum" class="form-control" placeholder="Phone Number *" value="{{data.values.phonenum}}">
+        </div>
+
+        <div class="division">
+            <p> Building Address
+                <hr>
+            </p>
+        </div>
+
+        <div class="col-md-12">
+            <input type="text" class="form-control" placeholder="Company Name(Optional)">
+        </div>
+        <div class="col-12">
+            <!-- <label for="inputAddress" class="form-label"></label> -->
+            <input type="text" id="strAddress" class="form-control" placeholder="Street Address *" value="{{data.values.street}}">
+
+        </div>
+        <div class="col-12">
+            <!-- <label for="inputAddress2" class="form-label"></label> -->
+            <input type="text" id="addressDetail" class="form-control" placeholder="Apartment, studio, or floor" value="{{data.values.address}}">
+        </div>
+
+
+        <div class="col-md-6">
+            <!-- <label for="validationServer03" class="form-label">State</label> -->
+            <input type="text" class="form-control" id="city" placeholder="City *" value="{{data.values.city}}">
+        </div>
+        <div class="col-md-3">
+            <!-- <label for="validationServer04" class="form-label">State</label> -->
+            <select class="form-select" id="state" placeholder="State" value="{{data.values.state}}">
+                <option selected disabled value="">Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <!-- <label for="validationServer05" class="form-label">Zip</label> -->
+            <input type="text" class="form-control  " id="zip" placeholder="Zip" value="{{data.values.zip}}">
+        </div>
+
+
+        <div class="col-md-12">
+            <input type="text" class="form-control" placeholder="Company Name(Optional)" value="{{data.values.company}}">
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck"></label>
+                <p class="policy">By submitting this order, you agree to the Terms of Service and Privacy Poicy. You
+                    aggree that WHC will automatically
+                    attempt to review your services prior to their next due date unless you request otherwise from
+                    your Client Area.
+                </p>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+    </form>
+</div>

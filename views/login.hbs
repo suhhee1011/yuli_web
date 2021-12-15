@@ -1,0 +1,71 @@
+
+<link href="second.css" rel="stylesheet">
+
+<div class="container">
+    <div class="logo">
+        <a href="#">
+            <img src="/img/logo.png" alt="logo" width="140" height="140" class="d-inline-block align-text-center">
+        </a>
+        <h1 class="title">Alba Space</h1>
+        <p>Sign in to WHC</p>
+    </div>
+{{!-- //typeof alert !='undefined' --}}
+    {{#if alert}}
+    {{#each alert}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{this.msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    <form method="post" class="row g-3" action="/login" enctype="multipart/form-data">
+        <div class="mb-3">
+            {{!-- {{#if data.errors.fnam}} 
+            <div class="alert alert-warning">
+                {{data.errors.fname}}
+            </div>
+            {{/if}} --}}
+            <label for="username" class="form-label">User Name *</label>
+            <input type="text" class="form-control" name="username" value="{{data.values.fname}}">
+        </div>
+
+        <div class="mb-3">
+            {{!-- {{#if data.errors.lname}} 
+            <div class="alert alert-warning">
+                {{data.errors.lname}}
+            </div>
+            {{/if}} --}}
+            <label for="lname" class="form-label"> Password *</label>
+            <input type="lname" class="form-control" name="lname" value="{{data.values.lname}}">
+        </div>
+
+        <div class="mb-3">
+            {{!-- {{#if data.errors.email}} 
+            <div class="alert alert-warning">
+                {{data.errors.email}}
+            </div>
+            {{/if}} --}}
+            <label for="email" class="form-label"> Password *</label>
+            <input type="email" class="form-control" name="email" value="{{data.values.email}}">
+        </div>
+
+        <div class="check_remember">
+            <label for="rememberMe"></label>
+            <input type="checkbox" id="rememberMe"> Remember Me
+        </div>
+
+        <div class="signup_link">
+            <a href="#">Forgot Password or Email?</a>
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <div class="card-footer">
+            <small class="text-muted">New to WHC?</small>
+            <a href="#">Sign up</a>
+        </div>
+    </form>
+
+</div>
+

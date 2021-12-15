@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link href="second.css" rel="stylesheet">
+
+<div class="container">
+    <div class="logo">
+        <a href="#">
+            <img src="/img/logo.png" alt="logo" width="140" height="140" class="d-inline-block align-text-center">
+        </a>
+        <h1 class="title">createPlan</h1>
+        <p>Create New Plan</p>
+    </div>
+
+    {{#if alert}}
+    {{#each alert}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{this.msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    <form method="post" class="row g-3" action="/createPlan" enctype="multipart/form-data">
+        {{!-- TODO: action --}}
+        <div class="mb-5">
+            <label for="planName" class="form-label">Plan Name *</label>
+            <input type="text" class="form-control" name="planName" value="{{data.values.planName}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="planPrice" class="form-label"> Plan Price</label>
+            <input type="text" class="form-control" name="planPrice" value="{{data.values.planPrice}}">
+        </div>
+
+        <div class="mb-6">
+            <label for="planDetail" class="form-label"> Plan description or Detail </label>
+            <input type="text" class="form-control" name="planDetail" value="{{data.values.planDetail}}">
+        </div>
+
+        <div class="mb-6">
+            <label for="filename" class="form-label"> Upload Image </label>
+            <input type="file" class="form-control" name="filename">
+            <input type="submit" value="send">
+        </div>
+
+        <div class="mb-12">
+            <label for="planDetail" class="form-label"> List of all to Features </label>
+            <input type="textarea" class="form-control" name="planDetail" value="{{data.values.features}}">
+        </div>
+
+        <div class="check_popular">
+            <label for="mostPopular"></label>
+            <input type="checkbox" id="mostPopular" value="{{data.values.features}}"> Most Popular
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+
+    </form>
+
+</div>
